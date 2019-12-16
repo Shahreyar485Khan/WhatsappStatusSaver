@@ -43,6 +43,11 @@ import java.util.Random;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import static com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.Activity.MainActivity.CHECK;
+import static com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.Activity.MainActivity.SAVE_PHOTO;
+import static com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.Activity.MainActivity.SAVE_STATUS;
+import static com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.Activity.MainActivity.SAVE_VIDEO;
+
 public class MyPictureActivity extends AppCompatActivity {
 
     ImageAdapter myImageAdapters;
@@ -54,6 +59,7 @@ public class MyPictureActivity extends AppCompatActivity {
     static File paths;
     String optCheck;
     ArrayList<File> videoFileList = new ArrayList<>();
+
     
     public static final String CHECK_VIDEO = "check_video";
     public static final String IS_VIDEO = "video";
@@ -68,7 +74,8 @@ public class MyPictureActivity extends AppCompatActivity {
         InitView();
         mtextView1 = findViewById(R.id.textView1);
 
-        optCheck = getIntent().getStringExtra("key");
+        //optCheck = getIntent().getStringExtra("key");
+        optCheck = getIntent().getStringExtra(CHECK);
 
         try {
             mgridview = (GridView) findViewById(R.id.gridview_itemsGallery);
@@ -77,7 +84,24 @@ public class MyPictureActivity extends AppCompatActivity {
             mgridview.setMultiChoiceModeListener(new MultiChoiceModeListener());
 
 
-            String ExternalStorageDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/WhatsApp/Media/.Statuses";
+            String ExternalStorageDirectoryPath = null;
+
+            if (optCheck != null){
+
+                if(optCheck.equals(SAVE_PHOTO)){
+
+                    ExternalStorageDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Status_Saver/Saved_Images";
+                }else if (optCheck.equals(SAVE_VIDEO)){
+
+                    ExternalStorageDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Status_Saver/Saved_Videos";
+
+                } else if(optCheck.equals(SAVE_STATUS)){
+
+                    ExternalStorageDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/WhatsApp/Media/.Statuses";
+
+                }
+
+            }
 
             // Toast.makeText(getApplicationContext(), R.string.app_name, Toast.LENGTH_LONG).show();
             File targetDirectories = new File(ExternalStorageDirectoryPath);

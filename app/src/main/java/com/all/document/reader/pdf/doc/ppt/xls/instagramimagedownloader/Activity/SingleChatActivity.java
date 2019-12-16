@@ -43,13 +43,14 @@ public class SingleChatActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_single_chat);
 
         txtAction = findViewById(R.id.chat_header);
+        imgBack = findViewById((R.id.chat_back));
 
 
         dbManager = new DatabaseHelper(this);
 
         contactName = getIntent().getStringExtra(CONTACT_NAME);
 
-        txtAction.setText(contactName+" Deleted Messages");
+        txtAction.setText(contactName);
 
         Cursor cursor = dbManager.searchByName(contactName);
 
@@ -61,7 +62,7 @@ public class SingleChatActivity extends AppCompatActivity implements View.OnClic
 
         listView.setAdapter(adapter);
 
-
+        imgBack.setOnClickListener(this);
 
     }
 
@@ -71,9 +72,7 @@ public class SingleChatActivity extends AppCompatActivity implements View.OnClic
         switch (view.getId()){
 
             case R.id.chat_back:{
-
-                finish();
-
+                onBackPressed();
                 break;
             }
 

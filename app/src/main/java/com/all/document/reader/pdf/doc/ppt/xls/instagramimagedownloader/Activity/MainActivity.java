@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.BuildConfig;
 import com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.R;
 import com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.Utils.Converter;
 
@@ -39,6 +40,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     LinearLayout deletedMessage,statusSaver,savePhoto,saveVideo,rateUs;
+
+    public static final String SAVE_PHOTO = "save_photo";
+    public static final String SAVE_VIDEO = "save_video";
+    public static final String SAVE_STATUS = "save_status";
+    public static final String CHECK = "key_id";
+//     static final String SAVE_VIDEO = "save_video";
+
 
 
 
@@ -235,7 +243,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.statusSaver: {
 
                 Intent intent =new Intent(this,MyPictureActivity.class);
+                intent.putExtra(CHECK,SAVE_STATUS);
                 startActivity(intent);
+
+                break;
+            }
+            case R.id.savePhoto: {
+
+                Intent intent =new Intent(this,MyPictureActivity.class);
+                intent.putExtra(CHECK,SAVE_PHOTO);
+                startActivity(intent);
+
+                break;
+            }
+            case R.id.saveVideo: {
+
+                Intent intent =new Intent(this,MyPictureActivity.class);
+                intent.putExtra(CHECK,SAVE_VIDEO);
+                startActivity(intent);
+
+                break;
+            }
+            case R.id.rateUs: {
+
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                    String shareMessage= "\nLet me recommend you this application\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
 
                 break;
             }

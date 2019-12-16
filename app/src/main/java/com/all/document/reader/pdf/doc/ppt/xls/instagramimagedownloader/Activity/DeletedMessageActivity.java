@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +20,13 @@ import com.all.document.reader.pdf.doc.ppt.xls.instagramimagedownloader.R;
 
 import java.util.ArrayList;
 
-public class DeletedMessageActivity extends AppCompatActivity {
+public class DeletedMessageActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     public static final String CONTACT_NAME = "contact_title";
 
     private ListView listView;
+    ImageView imgBack;
 
     DatabaseHelper dbManager;
 
@@ -43,6 +45,7 @@ public class DeletedMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_emp_list);
 
+        imgBack = findViewById(R.id.list_back);
 
         dbManager = new DatabaseHelper(this);
 
@@ -85,6 +88,19 @@ public class DeletedMessageActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+
+            case R.id.list_back:{
+                onBackPressed();
+                break;
+            }
+        }
 
     }
 }

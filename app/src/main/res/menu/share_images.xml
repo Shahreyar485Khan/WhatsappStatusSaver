@@ -7,6 +7,7 @@
         android:id="@+id/st_play"
         android:icon="@drawable/ic_play_arrow_black_24dp"
         android:orderInCategory="200"
+        android:visible="false"
         android:title="Save"
         app:showAsAction="always" />
 

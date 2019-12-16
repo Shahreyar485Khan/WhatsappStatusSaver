@@ -60,6 +60,8 @@ public class SlideImages extends AppCompatActivity implements SurfaceHolder.Call
         optCheck = getIntent().getStringExtra(CHECK_VIDEO);
         videoPath = getIntent().getStringExtra(VIDEO_FILE);
 
+
+
 /*
 
         optCheck = getIntent().getStringExtra("check");
@@ -117,6 +119,17 @@ public class SlideImages extends AppCompatActivity implements SurfaceHolder.Call
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.share_images, menu);
+        if (optCheck !=null){
+
+            if(optCheck.equals(IS_VIDEO)){
+
+                MenuItem register = menu.findItem(R.id.st_play);
+                register.setVisible(true);  //userRegistered is boolean, pointing if the user has registered or not.
+                return true;
+
+            }
+
+        }
         return true;
     }
 
@@ -125,11 +138,37 @@ public class SlideImages extends AppCompatActivity implements SurfaceHolder.Call
 
         int id = item.getItemId();
         if (id == R.id.share) {
-            shareImage();
+
+            if(optCheck != null) {
+                if (optCheck.equals(IS_VIDEO)) {
+
+                    shareFile(videoPath);
+
+                }
+            } else {
+
+                    shareFile(uriImages.toString());
+
+                }
+
+
+
             return true;
         }
         if (id == R.id.st_play) {
-            shareImage();
+
+            if(optCheck.equals(IS_VIDEO)){
+
+                Uri uri = FileProvider.getUriForFile(SlideImages.this, getApplicationContext().getPackageName() + ".provider",new File(videoPath));
+
+                Intent intent2 = new Intent();
+                intent2.setAction(Intent.ACTION_VIEW);
+                intent2.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent2.setDataAndType(uri, "video/mp4");
+                startActivity(intent2);
+
+            }
+
             return true;
         }
         if (id == R.id.st_download) {
@@ -137,7 +176,7 @@ public class SlideImages extends AppCompatActivity implements SurfaceHolder.Call
             if (optCheck.equals(IS_VIDEO)){
 
                 try {
-                    Converter.copyFile(new File(videoPath), new File(Converter.getImageFilename()));
+                    Converter.copyFile(new File(videoPath), new File(Converter.getVideoFilename()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -240,6 +279,20 @@ public class SlideImages extends AppCompatActivity implements SurfaceHolder.Call
 
         return bitmap;
     }
+
+
+    public void shareFile(String path){
+
+
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        Uri screenshotUri = Uri.parse(path);
+        sharingIntent.setType("*/*");
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+        startActivity(Intent.createChooser(sharingIntent, "Share file using"));
+
+    }
+
+
     public void shareImage (){
         File dir = new File(paths.toString());
         Uri uri = FileProvider.getUriForFile(SlideImages.this, BuildConfig.APPLICATION_ID + ".provider",dir);
