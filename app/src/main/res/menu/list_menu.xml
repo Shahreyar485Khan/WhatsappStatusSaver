@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="info.androidhive.imagefilters.MainActivity">
+    <item
+        android:id="@+id/list_delete"
+        android:icon="@drawable/delete_black"
+        android:title="Delete"
+        app:showAsAction="always">
+    </item>
+
+    <item
+        android:id="@+id/list_selectall"
+        android:icon="@drawable/done_all_black"
+        android:title="Select All"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/list_deselectall"
+        android:icon="@drawable/close_black"
+        android:title="DeSelect All"
+        app:showAsAction="ifRoom" />
+</menu>

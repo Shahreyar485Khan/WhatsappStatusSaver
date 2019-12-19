@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+
+
+    tools:context=".Activity.TermsandConditionActivity">
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+
+            android:paddingRight="24dp"
+            android:paddingTop="30dp">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="#170623"
+                android:textSize="25sp"
+
+                />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text"
+                android:paddingTop="20dp"
+                android:text="@string/term1"
+                android:textColor="#000"
+                android:textSize="16sp"
+
+                />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text2"
+                android:layout_marginTop="30dp"
+                android:text="@string/terms2"
+                android:textColor="#000"
+                android:textSize="16sp"
+
+                />
+
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text3"
+                android:paddingTop="20dp"
+                android:text="@string/term3"
+                android:textColor="#000"
+                android:textSize="16sp"
+
+                />
+
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/text4"
+                android:paddingTop="20dp"
+                android:text="@string/term4"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text6"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/text5"
+                android:paddingTop="20dp"
+                android:text="@string/term5"
+                android:textColor="#000"
+                android:textSize="16sp"
+
+                />
+
+
+
+            <Button
+                android:id="@+id/disagree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+
+                android:layout_below="@+id/text6"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="50dp"
+                android:background="@color/colorPrimary"
+                android:text="Deny"
+                android:onClick="denybtn"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/disagree"
+                android:layout_marginEnd="43dp"
+                android:background="@color/colorPrimary"
+                android:onClick="acceptbtn"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

@@ -2,6 +2,10 @@
 <resources>
     <color name="colorPrimary">#202020</color>
     <color name="colorPrimaryDark"> #2C2C2C</color>
+    <color name="bg_selector">#918A8A</color>
+    <color name="bg_color_chat">#DDDBDB</color>
     <color name="colorAccent">#D81B60</color>
     <color name="text_view_color">#E69EB8</color>
+    <color name="ss_color">#E69EB8</color>
+    <color name="pp_color">#B58CDB</color>
 </resources>

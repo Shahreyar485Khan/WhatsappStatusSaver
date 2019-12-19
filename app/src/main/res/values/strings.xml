@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Status Saver</string>
+
+
+    <!--    test add-->
+    <!--    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>-->
+    <!--    <string name="Banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
+    <!--    <string name="Interstitial" translatable="false">ca-app-pub-3940256099942544/1033173712</string>-->
+    <!--    <string name="native_id" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+
+    <!--    original adds-->
+
+    <string name="app_id">ca-app-pub-3433618040569361~6291933617</string>
+    <string name="Banner">ca-app-pub-3433618040569361/4978851943</string>
+    <string name="Interstitial">ca-app-pub-3433618040569361/3665770270</string>
+
+
+    <string name="name">StatusSaver</string>
+    <string name="term1">Introduction\n\nTHIS APPLICATION ACTUALLY SAVES THE DELETED MESSAGES FROM NOTIFICATION OF whatsapp and ou can read the messages that are deleted by the other person chatting with you. We also facilitate you with status downloader for whatsapp.\n</string>
+    <string name="terms2">Ads implementation:\n\nwe are using admob for the interstitials and banners in this application\n</string>
+    <string name="term3">Graphics and ASO:\n\nWE ARE PURELY HAVING OUR OWN GRAPHICS AND DESCRIPTION.\n</string>
+    <string name="term4">PERMISSION:\n\n
+**NOTIFICATION LISTENER **\n
+**READ PHONE STORAGE**\n
+**WRITE PHONE STORAGE**\n</string>
+    <string name="term5">Note: - The app is neither affiliated to any other app nor claims to own a trademark to use the name and logo of any third party app.\n</string>
 </resources>

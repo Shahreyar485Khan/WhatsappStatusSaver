@@ -5,59 +5,101 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-  <!--  <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Header"
-        android:textSize="25dp"
-        android:visibility="gone"
-        />-->
+
     <LinearLayout
+        android:id="@+id/listAction"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:background="@color/colorPrimary"
         android:layout_weight="1"
+        android:weightSum="5"
         >
 
+      <LinearLayout
+        android:id="@+id/layout_list_back"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:paddingStart="@dimen/_10sdp"
+          android:paddingEnd="@dimen/_10sdp"
+          android:background="@drawable/btn_selectors"
+          android:gravity="center"
+          android:layout_weight=".5"
+        >
         <ImageView
             android:id="@+id/list_back"
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
-            android:layout_marginStart="@dimen/_10sdp"
             android:src="@drawable/back"
-            android:layout_gravity="center"
+
             />
+
+      </LinearLayout>
+
       <TextView
-          android:layout_width="wrap_content"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:text="Deleted Messages"
+          android:textStyle="bold"
           android:textColor="@android:color/white"
-          android:textSize="@dimen/_13sdp"
+          android:textSize="@dimen/_15sdp"
           android:layout_gravity="center"
-          android:layout_marginStart="@dimen/_10sdp"
-
+          android:layout_weight="3.5"
           />
 
+      <LinearLayout
+          android:id="@+id/layout_refresh"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:paddingStart="@dimen/_10sdp"
+          android:paddingEnd="@dimen/_10sdp"
+          android:background="@drawable/btn_selectors"
+          android:gravity="center"
+          android:layout_weight="1"
+          >
+        <ImageView
+            android:id="@+id/list_refresh"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_refresh_black_24dp"
+
+            />
+
+      </LinearLayout>
 
     </LinearLayout>
 
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:orientation="vertical"
+      android:layout_weight="9">
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_height="wrap_content"
         android:dividerHeight="1dp"
         android:padding="10dp" >
     </ListView>
-
     <TextView
         android:id="@+id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:visibility="visible"
         android:text="No record found" />
+
+  </LinearLayout>
+
+
+
+  <include
+      android:id="@+id/bannerad"
+      android:visibility="gone"
+      layout="@layout/banner"
+      />
 
 </LinearLayout>

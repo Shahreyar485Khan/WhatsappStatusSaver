@@ -1,52 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@color/bg_color_chat"
     >
 
     <LinearLayout
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:weightSum="5"
         android:elevation="15dp"
+        android:layout_weight="1"
         android:background="@color/colorPrimary">
 
+    <LinearLayout
+        android:id="@+id/layout_chat_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/btn_selectors"
+        android:gravity="center"
+        >
 
         <ImageView
             android:id="@+id/chat_back"
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
-            android:layout_marginStart="@dimen/_10sdp"
             android:src="@drawable/back"
-            android:layout_gravity="center"
+
             />
+    </LinearLayout>
         <TextView
             android:id="@+id/chat_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chat List"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_15sdp"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_10sdp"
-
             />
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"/>
+
+        <LinearLayout
+            android:id="@+id/layout_chat_del"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:background="@drawable/btn_selectors"
+            android:gravity="center">
+        <ImageView
+            android:id="@+id/chat_del"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_delete_black_24dp"
+            />
+        </LinearLayout>
     </LinearLayout>
 
 
     <ListView
          android:id="@+id/chat_list_view"
          android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/actionBar"
+         android:layout_height="0dp"
+        android:layout_weight="9"
          android:dividerHeight="1dp"
          android:padding="10dp" >
      </ListView>
 
 
+    <include
+        android:id="@+id/bannerad"
+        android:visibility="gone"
+        layout="@layout/banner"
+        />
 
-</RelativeLayout>
+
+</LinearLayout>
