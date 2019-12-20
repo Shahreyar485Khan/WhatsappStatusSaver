@@ -3,16 +3,16 @@
 
 
     <!--    test add-->
-    <!--    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>-->
-    <!--    <string name="Banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
-    <!--    <string name="Interstitial" translatable="false">ca-app-pub-3940256099942544/1033173712</string>-->
-    <!--    <string name="native_id" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+        <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>
+        <string name="Banner" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+        <string name="Interstitial" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+
 
     <!--    original adds-->
 
-    <string name="app_id">ca-app-pub-3433618040569361~6291933617</string>
+   <!-- <string name="app_id">ca-app-pub-3433618040569361~6291933617</string>
     <string name="Banner">ca-app-pub-3433618040569361/4978851943</string>
-    <string name="Interstitial">ca-app-pub-3433618040569361/3665770270</string>
+    <string name="Interstitial">ca-app-pub-3433618040569361/3665770270</string>-->
 
 
     <string name="name">StatusSaver</string>

@@ -86,42 +86,46 @@ public class StatusSaverActivitiy extends AppCompatActivity {
         allFileList.clear();
         check.clear();
 
-        for (File file : files) {
-            if (file.exists()) {
+        if(files == null){
+            Toast.makeText(this, "No image or videos downloaded!!!", Toast.LENGTH_SHORT).show();
+        }else {
+            for (File file : files) {
+                if (file.exists()) {
 
-                allFileList.add(file);
+                    allFileList.add(file);
 
-              //  Log.d("asdfg", ""+file.getAbsolutePath());
+                    //  Log.d("asdfg", ""+file.getAbsolutePath());
 
-                if (file.getAbsolutePath().contains(".mp4")) {
+                    if (file.getAbsolutePath().contains(".mp4")) {
 
-                    Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), 0); //Creation of Thumbnail of video
+                        Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), 0); //Creation of Thumbnail of video
 
-                    Resources r = getResources();
-                    Drawable[] layers = new Drawable[2];
-                    layers[0] = new BitmapDrawable(r, bitmap);
-                    layers[1] = r.getDrawable(R.drawable.ic_play_arrow_black_24dp);
-                    LayerDrawable layerDrawable = new LayerDrawable(layers);
+                        Resources r = getResources();
+                        Drawable[] layers = new Drawable[2];
+                        layers[0] = new BitmapDrawable(r, bitmap);
+                        layers[1] = r.getDrawable(R.drawable.ic_play_arrow_black_24dp);
+                        LayerDrawable layerDrawable = new LayerDrawable(layers);
 
-                    Bitmap bit = drawableToBitmap(geSingleDrawable(layerDrawable));
+                        Bitmap bit = drawableToBitmap(geSingleDrawable(layerDrawable));
 
-                    Uri uri = Converter.bitmapToUriConverter(this, bit);
-                    File pathFile = new File(Converter.getRealPathFromURI(this, uri.toString()));
+                        Uri uri = Converter.bitmapToUriConverter(this, bit);
+                        File pathFile = new File(Converter.getRealPathFromURI(this, uri.toString()));
 
-                    statusFileList.add(pathFile.getAbsolutePath());
-                    check.add("0");
+                        statusFileList.add(pathFile.getAbsolutePath());
+                        check.add("0");
 
-                    // myImageAdapters.add(pathFile.getAbsolutePath());
+                        // myImageAdapters.add(pathFile.getAbsolutePath());
+                    } else {
+                        //  myImageAdapters.add(file.getAbsolutePath());
+                        statusFileList.add(file.getAbsolutePath());
+                        check.add("1");
+                    }
+
+                    //  mgridview.setAdapter(myImageAdapters);
+
                 } else {
-                    //  myImageAdapters.add(file.getAbsolutePath());
-                    statusFileList.add(file.getAbsolutePath());
-                    check.add("1");
+                    Toast.makeText(getApplicationContext(), "No File Found", Toast.LENGTH_SHORT).show();
                 }
-
-                //  mgridview.setAdapter(myImageAdapters);
-
-            } else {
-                Toast.makeText(getApplicationContext(), "No File Found", Toast.LENGTH_SHORT).show();
             }
         }
 
