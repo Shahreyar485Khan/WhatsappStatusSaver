@@ -1,11 +1,13 @@
 package com.whatsapp.recovery.messages.status.saver.Activity;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,8 +15,11 @@ import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whatsapp.recovery.messages.status.saver.R;
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String SAVE_STATUS = "save_status";
     public static final String CHECK = "key_id";
 //     static final String SAVE_VIDEO = "save_video";
+    SharedPreferences preferences;
 
     InterstitialAd interstitialAd;
 
@@ -52,68 +58,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
 
+        preferences = getSharedPreferences("PREFSs", 0);
+        String chk = preferences.getString("firsttime", "0");
 
 
-        initViews();
+        if (chk.equals("yes")) {
 
-        MobileAds.initialize(this,getResources().getString(R.string.app_id));
-        reqNewInterstitial();
+            MobileAds.initialize(this,getResources().getString(R.string.app_id));
+            reqNewInterstitial();
+            initViews();
+            requestPermissions();
 
-        requestPermissions();
+            viewClickListeners();
 
-        viewClickListeners();
+        }else{
+
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.activity_termsand_condition);
+            dialog.setTitle("Title...");
+
+            Button dialogButton = (Button) dialog.findViewById(R.id.agree);
+            Button dialogButton2 = (Button) dialog.findViewById(R.id.disagree);
+
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("firsttime", "yes");
+                    editor.apply();
+                    dialog.dismiss();
+
+                    MobileAds.initialize(MainActivity.this,getResources().getString(R.string.app_id));
+                    reqNewInterstitial();
+                    initViews();
+                    requestPermissions();
+                    viewClickListeners();
+
+                }
+            });
+
+            dialogButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   finishAffinity();
+                    // finish();
+                    //  startActivity(new Intent(MainActivity.this,MainActivity.class));
+
+                }
+            });
+
+
+            dialog.show();
+        }
 
     }
-
-
-
-
-/*
-
-    private BroadcastReceiver onNotice= new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-
-
-            String pack = intent.getStringExtra("package");
-            String title = intent.getStringExtra("title");
-            String text = intent.getStringExtra("text");
-
-            Toast.makeText(MainActivity.this, "test1    "+text, Toast.LENGTH_SHORT).show();
-        //    Toast.makeText(MainActivity.this, "test2    "+title, Toast.LENGTH_SHORT).show();
-        //    Toast.makeText(MainActivity.this, "test3    "+text, Toast.LENGTH_SHORT).show();
-
-
-            if (pack.equals("com.whatsapp")) {
-
-                TableRow tr = new TableRow(getApplicationContext());
-                tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                TextView textview = new TextView(getApplicationContext());
-                textview.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1.0f));
-                textview.setTextSize(20);
-                textview.setTextColor(Color.parseColor("#0B0719"));
-                textview.setText(Html.fromHtml(pack + "<br><b>" + title + " : </b>" + text));
-                tr.addView(textview);
-                tab.addView(tr);
-
-
-            }
-
-
-
-        }
-    };
-*/
-
-
 
 
     private boolean isNotificationServiceRunning() {
@@ -280,38 +283,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.deletedMessage:{
 
+                boolean isNotificationServiceRunning = isNotificationServiceRunning();
+                if(!isNotificationServiceRunning){
 
-
-                if (interstitialAd.isLoaded()) {
-                    interstitialAd.show();
-                } else {
-                    reqNewInterstitial();
-                    boolean isNotificationServiceRunning = isNotificationServiceRunning();
-                    if(!isNotificationServiceRunning){
-
-                        createDialogueNotification(this);
-                    }else {
-                        Intent intent =new Intent(this, DeletedMessageActivity.class);
-                        startActivity(intent);
-                    }
-
+                    createDialogueNotification(this);
+                }else {
+                    Intent intent =new Intent(this, DeletedMessageActivity.class);
+                    startActivity(intent);
                 }
-                interstitialAd.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdClosed() {
-
-                        reqNewInterstitial();
-                        boolean isNotificationServiceRunning = isNotificationServiceRunning();
-                        if(!isNotificationServiceRunning){
-
-                            createDialogueNotification(MainActivity.this);
-                        }else {
-                            Intent intent =new Intent(MainActivity.this, DeletedMessageActivity.class);
-                            startActivity(intent);
-                        }
-
-                    }
-                });
 
 
                 break;
